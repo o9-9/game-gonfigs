@@ -8,6 +8,16 @@
         $Host.PrivateData.ProgressForegroundColor = "White"
         Clear-Host
 
+        # SCRIPT CHECK INTERNET
+        if (!(Test-Connection -ComputerName "8.8.8.8" -Count 1 -Quiet -ErrorAction SilentlyContinue)) {
+        Write-Host "Internet Connection Required`n" -ForegroundColor Red
+        Pause
+        exit
+        }
+
+        # SCRIPT SILENT
+        $progresspreference = 'silentlycontinue'
+
         # FUNCTION SHOW MENU
         function show-menu {
 	    Clear-Host
